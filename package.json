@@ -1,5 +1,5 @@
 {
-  "name": "geekhub_mini_jira_frontend",
+  "name": "GeekChatV2",
   "version": "1.0.0",
   "description": "### How to start development: `npm i`",
   "main": "index.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vdmytriuk/geekhub_mini_jira_frontend.git"
+    "url": "git+https://github.com/vdmytriuk/GeekChatV2.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vdmytriuk/geekhub_mini_jira_frontend/issues"
+    "url": "https://github.com/vdmytriuk/GeekChatV2/issues"
   },
-  "homepage": "https://github.com/vdmytriuk/geekhub_mini_jira_frontend#readme",
+  "homepage": "https://github.com/vdmytriuk/GeekChatV2#readme",
   "devDependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",

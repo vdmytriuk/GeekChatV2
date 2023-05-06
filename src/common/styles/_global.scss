@@ -1,0 +1,179 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  --content-size: .6945vw;
+
+  font-size: var(--content-size);
+
+  height: 100vh;
+
+  @include tablet-l {
+    --content-size: 1.302085vw;
+  }
+
+  @include mobile-xl {
+    --content-size: 2.5599vw;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  color: var(--gray-200);
+
+  background-color: var(--gray-700);
+  box-sizing: border-box;
+
+  li {
+    list-style: none;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4.7rem;
+  min-height: 100vh;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+form {
+  margin: 0;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+
+input,
+textarea {
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+
+  background-color: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-default);
+}
+
+.mob {
+  display: none !important;
+
+  @include tablet-l {
+    display: block !important;
+  }
+}
+
+.desk {
+  display: block !important;
+
+  @include tablet-l {
+    display: none !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(20%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(-180deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+
+.simple-icon {
+  @include imageChars();
+  width: 2.4rem;
+}
+
+@keyframes fadeLeft {
+  from {
+    transform: translateX(10%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#webpack-dev-server-client-overlay {
+  display: none !important;
+}

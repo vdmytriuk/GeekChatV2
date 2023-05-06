@@ -1,0 +1,145 @@
+//Headings
+
+.biggest-heading {
+  font: {
+    size: 4.8rem;
+    weight: 700;
+  };
+  line-height: 1.16;
+
+  @include tablet-l {
+    font-size: 3.6;
+  }
+}
+
+.big-heading {
+  font: {
+    size: 3.6rem;
+    weight: 700;
+  };
+  line-height: 1.33;
+
+  @include tablet-l {
+    font-size: 2.4rem;
+  }
+}
+
+.medium-heading {
+  font: {
+    size: 2.4rem;
+    weight: 700;
+  };
+  line-height: 1.33;
+
+  @include tablet-l {
+    font-size: 1.8rem;
+  }
+}
+
+.small-heading {
+  font: {
+    size: 1.8rem;
+    weight: 700;
+  };
+  line-height: 1.33;
+
+  @include tablet-l {
+    font-size: 1.6rem;
+  }
+}
+
+.smallest-heading {
+  font: {
+    size: 1.6rem;
+    weight: 700;
+  };
+  line-height: 1.5;
+
+  @include tablet-l {
+    font-size: 1.4rem;
+  }
+}
+
+//Texts
+
+.big-text {
+  font: {
+    size: 1.8rem;
+    weight: 400;
+  };
+  line-height: 1.33;
+}
+
+.medium-text {
+  font: {
+    size: 1.6rem;
+    weight: 400;
+  };
+  line-height: 1.5;
+}
+
+.small-text {
+  font: {
+    size: 1.4rem;
+    weight: 400;
+  };
+  line-height: 1.33;
+}
+
+.caption-text {
+  font: {
+    size: 1.2rem;
+    weight: 400;
+  };
+  line-height: 1.2;
+}
+
+//Weights
+
+.regular-weight {
+  font-weight: 400;
+}
+
+.medium-weight {
+  font-weight: 500;
+}
+
+.bold-weight {
+  font-weight: 700;
+}
+
+//Colors
+
+.light-text {
+  color: var(--gray-050);
+}
+
+.primary-default-color {
+  color: var(--primary-default);
+}
+
+.secondary-default-color {
+  color: var(--secondary-default);
+}
+
+.gray100-text {
+  color: var(--gray-100);
+}
+
+.gray400-text {
+  color: var(--gray-400);
+}
+
+.gray500-text {
+  color: var(--gray-500);
+}
+
+.gray600-text {
+  color: var(--gray-600);
+}
+
+//Margins
+
+.mrg24 {
+  margin-bottom: 2.4rem;
+}
