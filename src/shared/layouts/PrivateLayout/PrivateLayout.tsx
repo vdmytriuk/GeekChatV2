@@ -1,5 +1,6 @@
 import {FC} from "react";
 
+import Rooms from "../../../modules/Rooms/Rooms";
 import PrivateHeader from "../PrivateHeader/PrivateHeader";
 
 import "./PrivateLayout.scss";
@@ -14,19 +15,13 @@ const PrivateLayout: FC<IPrivateLayout> = ({children}) => {
             <PrivateHeader/>
 
             <main className="private-layout">
-                <aside className="private-layout__toolbar">
-
+                <aside className="private-layout__aside">
+                    <Rooms/>
                 </aside>
 
-                <div className="private-layout__inner">
-                    <div className="private-layout__header">
-
-                    </div>
-
-                    <div className="private-layout__main">
-                        {children}
-                    </div>
-                </div>
+                <section className="private-layout__inner">
+                    {children}
+                </section>
             </main>
         </>
     );

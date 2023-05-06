@@ -1,4 +1,12 @@
 .private-layout {
   display: flex;
   width: 100%;
+
+  &__aside {
+    height: 100%;
+    width: 30rem;
+    border-right: 1px solid var(--gray-400);
+
+    background-color: var(--gray-900);
+  }
 }

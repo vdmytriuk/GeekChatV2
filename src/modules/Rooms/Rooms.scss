@@ -1,0 +1,9 @@
+.rooms {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    border-bottom: 1px solid var(--gray-400);
+  }
+}

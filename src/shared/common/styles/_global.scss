@@ -42,7 +42,7 @@ main {
   display: flex;
   flex-direction: column;
   padding-top: 9rem;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 p {
@@ -176,4 +176,14 @@ button {
 
 #webpack-dev-server-client-overlay {
   display: none !important;
+}
+
+.hover-shadow {
+  transition: .23s ease-in-out;
+
+  &:hover {
+    scale: 1.005;
+    translate: 0 -2%;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.26));
+  }
 }

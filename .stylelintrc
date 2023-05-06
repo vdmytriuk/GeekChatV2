@@ -1,14 +1,5 @@
 {
   "rules": {
-    "at-rule-no-unknown": null,
-    "color-hex-length": "long",
-    "color-no-invalid-hex": true,
-    "declaration-block-trailing-semicolon": "always",
-    "indentation": 2,
-    "no-descending-specificity": null,
-    "block-opening-brace-space-before": ["always", {
-      "ignoreAtRules": ["if", "else", "for", "each", "while", "media", "supports", "include", "mixin"]
-    }],
-    "value-list-comma-newline-after": "always-multi-line"
+    "at-rule-no-unknown": null
   }
 }
