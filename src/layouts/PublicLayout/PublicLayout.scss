@@ -1,0 +1,14 @@
+.container--public {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .column {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+  }
+}

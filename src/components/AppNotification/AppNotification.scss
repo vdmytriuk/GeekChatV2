@@ -1,0 +1,30 @@
+.app-notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 9999;
+
+  padding: 2rem;
+  width: 40rem;
+
+  background-color: var(--primary-color);
+  border-radius: 8px;
+
+  animation: fadeOut .5s;
+
+  &__close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    svg {
+      path {
+        stroke: white;
+      }
+    }
+  }
+
+  * {
+    color: white!important;
+  }
+}

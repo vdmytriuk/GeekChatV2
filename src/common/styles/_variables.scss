@@ -1,0 +1,31 @@
+:root {
+  /* Primary */
+  --primary-default: #004023;
+  --primary-hover: #156943;
+  --primary-pressed: #125A39;
+  --primary-stroke: #D6E0DC;
+
+  /* Secondary */
+  --secondary-default: #60715D;
+  --secondary-hover: #7F947B;
+  --secondary-pressed: #5E7A59;
+  --secondary-stroke: #C9D7D0;
+
+  /* BG */
+  --bg-dark: #BFC4BE;
+  --bg-light: #EFF1E9;
+
+  /* Brand Text*/
+  --accent-primary-text-color: #839256;
+  --accent-secondary-text-color: #FBF4B7;
+
+  /* System Gray */
+  --gray-700: #232323;
+  --gray-600: #333333;
+  --gray-500: #686868;
+  --gray-400: #929292;
+  --gray-300: #D9D9D9;
+  --gray-200: #E8E8E8;
+  --gray-100: #F5F5F5;
+  --gray-050: #FFFFFF;
+}
