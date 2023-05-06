@@ -1,10 +1,11 @@
 import {FC} from "react";
 import {Navigate} from "react-router";
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
-import {ROUTER} from "../../common/config/router";
-import {PublicLayout} from "../../layouts/PublicLayout";
+import {ROUTER} from "../../shared/common/config/router";
+
+import PublicLayout from "../../shared/layouts/PublicLayout/PublicLayout";
 
 interface IPublicRoute {
     children: JSX.Element;

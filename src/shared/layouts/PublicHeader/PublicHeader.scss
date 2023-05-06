@@ -1,0 +1,59 @@
+.public-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  height: 9rem;
+
+  background-color: var(--gray-600);
+
+  > .app-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  &__link {
+    font-size: 1.8rem;
+
+    &.get-started {
+      display: inline-block;
+      padding: 1rem 1.8rem;
+
+      color: var(--bg-color);
+
+      background-color: var(--accent-primary-text-color);
+      border-radius: 1rem;
+
+      transition: .3s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+
+        background-color: var(--accent-secondary-text-color);
+
+        color: var(--gray-700);
+      }
+    }
+  }
+
+  svg {
+    transition: .3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+
+      filter: grayscale(0);
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import {FC} from "react";
 import {Route, Routes} from "react-router";
 
-import {ROUTER} from "../../common/config/router";
+import {ROUTER} from "../../shared/common/config/router";
 
 import PublicRoute from "../PublicRoute/PublicRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import WelcomePage from "../../pages/WelcomePage/WelcomePage";
+import HomePage from "../../pages/HomePage/HomePage";
+import AuthPage from "../../pages/AuthPage/AuthPage";
 
 
 const AppRouter: FC = () => {
@@ -15,7 +18,16 @@ const AppRouter: FC = () => {
                 path={ROUTER.WELCOME}
                 element={
                     <PublicRoute>
-                        <span></span>
+                        <WelcomePage/>
+                    </PublicRoute>
+                }
+            />
+
+            <Route
+                path={ROUTER.AUTH}
+                element={
+                    <PublicRoute>
+                        <AuthPage/>
                     </PublicRoute>
                 }
             />
@@ -24,7 +36,7 @@ const AppRouter: FC = () => {
                 path={ROUTER.HOME}
                 element={
                     <PrivateRoute>
-                        <span></span>
+                        <HomePage/>
                     </PrivateRoute>
                 }
             />
