@@ -1,6 +1,6 @@
 import {FC, useEffect} from "react";
-import {useTypedDispatch} from "./hooks/useTypedDispatch";
-import {useTypedSelector} from "./hooks/useTypedSelector";
+import {useTypedDispatch} from "./shared/hooks/useTypedDispatch";
+import {useTypedSelector} from "./shared/hooks/useTypedSelector";
 
 import {appActions} from "./store/app";
 import {setUserProfile} from "./store/user/operation";

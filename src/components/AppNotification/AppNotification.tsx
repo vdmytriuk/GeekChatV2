@@ -1,11 +1,11 @@
 import {FC, useEffect} from "react";
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useTypedDispatch} from "../../hooks/useTypedDispatch";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
+import {useTypedDispatch} from "../../shared/hooks/useTypedDispatch";
 
 import {appActions} from "../../store/app";
 
-import Close from "../../assets/svg/close.svg";
+import Close from "../../shared/assets/svg/close.svg";
 
 import "./AppNotification.scss";
 

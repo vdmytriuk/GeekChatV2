@@ -1,11 +1,11 @@
 import {FC} from "react";
 import {Navigate} from "react-router";
 
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
-import {ROUTER} from "../../common/config/router";
+import {ROUTER} from "../../shared/common/config/router";
 
-import PrivateLayout from "../../layouts/PrivateLayout/PrivateLayout";
+import PrivateLayout from "../../shared/layouts/PrivateLayout/PrivateLayout";
 
 interface IPrivateRoute {
     children: JSX.Element;

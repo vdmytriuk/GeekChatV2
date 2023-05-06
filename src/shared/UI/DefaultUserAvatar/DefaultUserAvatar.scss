@@ -1,0 +1,16 @@
+.user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 5rem;
+  height: 5rem;
+
+  font-size: 2.4rem;
+
+  color: var(--gray-050);
+  border-radius: 50%;
+  background-color: var(--primary-default);
+
+  cursor: pointer;
+}

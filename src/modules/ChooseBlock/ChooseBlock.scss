@@ -1,0 +1,14 @@
+.choose-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  text-align: center;
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}

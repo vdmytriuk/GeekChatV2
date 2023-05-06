@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-import {LOCAL_STORAGE_USER_KEY} from "../../common/config/localStorage";
+import {LOCAL_STORAGE_USER_KEY} from "../../shared/common/config/localStorage";
 
 import {IUserState} from "./types";
-import {IUser} from "../../common/types";
+import {IUser} from "../../shared/common/types";
 
 const initialState: IUserState = {
     _id: null,

@@ -2,7 +2,7 @@ import {FC} from "react";
 
 import {IModalProps} from "./types";
 
-import CloseIcon from '../../assets/svg/close.svg';
+import CloseIcon from '../../shared/assets/svg/close.svg';
 
 import './ModalWindow.scss';
 

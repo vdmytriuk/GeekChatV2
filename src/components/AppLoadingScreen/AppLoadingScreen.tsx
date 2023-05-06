@@ -1,7 +1,7 @@
 import {FC} from "react";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
-import Logo from "../../assets/svg/logo.svg";
+import Logo from "../../shared/assets/svg/logo.svg";
 
 import "./AppLoadingScreen.scss"
 

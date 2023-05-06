@@ -1,15 +1,16 @@
 import jwt_decode from "jwt-decode";
 
-import $host from "../../http/host";
+import $host from "../../shared/http/host";
 
+import {appActions} from "../app";
 import {AppDispatch} from "../store";
 import {userActions} from "./userSlice";
 
-import {LOCAL_STORAGE_USER_KEY} from "../../common/config/localStorage";
+import {LOCAL_STORAGE_USER_KEY} from "../../shared/common/config/localStorage";
 
-import {baseRequest} from "../../common/base/baseRequest";
+import {baseRequest} from "../../shared/common/base/baseRequest";
 
-import {IUser} from "../../common/types";
+import {IUser} from "../../shared/common/types";
 
 export const setUserProfile = (dispatch: AppDispatch) => {
     return baseRequest<any>(async () => {
@@ -31,5 +32,5 @@ export const setUserProfile = (dispatch: AppDispatch) => {
         const user = resp?.data;
 
         dispatch(userActions.setUser(user));
-    }, { title: "", text: "" });
+    });
 }
