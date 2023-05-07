@@ -5,20 +5,22 @@ export interface IUser {
 }
 
 export interface IMessage {
-    _id: string;
+    _id?: string;
     author: {
         id: string;
         username: string;
     },
-    room: string;
-    message: string;
+    isSelf?: boolean;
+    isAdmin?:boolean;
+    room?: string;
+    message?: string;
     filePath?: string;
-    createdAt: string;
-    updatedAt: string;
+    createdAt?: string;
+    updatedAt?: string;
 }
 
 export interface IRoom {
-    _id: string;
+    _id?: string;
     name: string;
     description?: string;
     owner: string;

@@ -5,7 +5,7 @@ import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
 import {ROUTER} from "../../shared/common/config/router";
 
-import PublicLayout from "../../shared/layouts/PublicLayout/PublicLayout";
+import PublicLayout from "../../layouts/PublicLayout/PublicLayout";
 
 interface IPublicRoute {
     children: JSX.Element;

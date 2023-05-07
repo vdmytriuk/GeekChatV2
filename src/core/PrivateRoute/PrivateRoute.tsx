@@ -5,7 +5,7 @@ import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
 import {ROUTER} from "../../shared/common/config/router";
 
-import PrivateLayout from "../../shared/layouts/PrivateLayout/PrivateLayout";
+import PrivateLayout from "../../layouts/PrivateLayout/PrivateLayout";
 
 interface IPrivateRoute {
     children: JSX.Element;

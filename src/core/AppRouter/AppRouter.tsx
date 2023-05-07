@@ -1,5 +1,5 @@
 import {FC} from "react";
-import {Route, Routes} from "react-router";
+import {Navigate, Route, Routes} from "react-router";
 
 import {ROUTER} from "../../shared/common/config/router";
 
@@ -39,6 +39,11 @@ const AppRouter: FC = () => {
                         <HomePage/>
                     </PrivateRoute>
                 }
+            />
+
+            <Route
+                path={ROUTER.ANY}
+                element={<Navigate to={ROUTER.WELCOME}/>}
             />
         </Routes>
     );

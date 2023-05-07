@@ -1,12 +1,12 @@
 import React, {FC} from "react";
 import {Link} from "react-router-dom";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
-import {ROUTER} from "../../common/config/router";
+import {ROUTER} from "../../shared/common/config/router";
 
-import Logo from "../../assets/svg/logo.svg";
+import Logo from "../../shared/assets/svg/logo.svg";
 
-import DefaultUserAvatar from "../../UI/DefaultUserAvatar/DefaultUserAvatar";
+import DefaultUserAvatar from "../../shared/UI/DefaultUserAvatar/DefaultUserAvatar";
 
 import "./PrivateHeader.scss";
 
