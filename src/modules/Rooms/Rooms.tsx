@@ -5,14 +5,16 @@ import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 import {getPublicRoomsRequest} from "./api";
 
 import Nav from "../../shared/UI/Nav/Nav";
+import Room from "../../components/Room/Room";
 
 import "./Rooms.scss";
-import Room from "../../components/Room/Room";
 
 const Rooms: FC = () => {
     const dispatch = useTypedDispatch();
 
     const navItems = ["My rooms", "Public rooms"];
+
+    const [roomPopupId, setRoomPopupId] = useState(null);
     const [activeRoomType, setActiveRoomType] = useState(navItems[0]);
 
     const publicRooms = useTypedSelector(state => state.rooms.publicRooms);
@@ -27,23 +29,26 @@ const Rooms: FC = () => {
                 <Nav navItems={navItems} onClick={(text: any) => setActiveRoomType(text)}/>
             </div>
 
-            {activeRoomType === navItems[0]
-                ?
-                <ul className="rooms__list">
+            <div className="rooms__content">
+                {activeRoomType === navItems[0]
+                    ?
+                    <ul className="rooms__list">
 
-                </ul>
-                :
-                <ul className="rooms__list">
-                    {publicRooms.map(room => (
-                        <li key={room._id}>
-                            <Room
-                                {...room}
-                            />
-                        </li>
-                    ))}
-                </ul>
-            }
-
+                    </ul>
+                    :
+                    <ul className="rooms__list">
+                        {publicRooms.map(room => (
+                            <li key={room._id}>
+                                <Room
+                                    setPopupId={setRoomPopupId}
+                                    popupId={roomPopupId}
+                                    {...room}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                }
+            </div>
         </div>
     );
 };

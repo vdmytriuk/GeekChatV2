@@ -6,4 +6,10 @@
     padding: 2rem;
     border-bottom: 1px solid var(--gray-400);
   }
+
+  &__content {
+    height: 52.8rem;
+
+    overflow-y: auto;
+  }
 }
