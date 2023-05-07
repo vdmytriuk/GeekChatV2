@@ -33,7 +33,7 @@ const FormField: FC<IInputProps> = (
 
   return (
     <div className="field">
-      {type !== 'checkbox' &&
+      {type !== 'checkbox' && rest.label &&
         <label
           htmlFor={name}
           className="field__label"

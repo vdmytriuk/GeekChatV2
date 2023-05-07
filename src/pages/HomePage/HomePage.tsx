@@ -1,9 +1,9 @@
-import {Chat} from "../../modules/Chat/Chat";
+import {ChatRoom} from "../../modules/ChatRoom/ChatRoom";
 
 const HomePage = () => {
     return (
         <>
-            <Chat/>
+            <ChatRoom/>
         </>
     );
 };

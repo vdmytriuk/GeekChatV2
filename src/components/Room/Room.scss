@@ -10,7 +10,8 @@
 
   transition: .3s ease-in-out;
 
-  &:hover {
+  &:hover,
+  &.active {
     background-color: var(--gray-600);
   }
 
@@ -49,6 +50,29 @@
     border-radius: 1rem;
     background-color: var(--gray-600);
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.26));
+
+    &.editing {
+      .room__item {
+        max-width: 0;
+        max-height: 0;
+
+        gap: 0;
+        padding: 0;
+
+        opacity: 0;
+      }
+
+      .room__edit {
+        padding: 1rem;
+        max-width: 25rem;
+        max-height: 15rem;
+
+        pointer-events: all;
+        opacity: 1;
+
+        transition-delay: .5s;
+      }
+    }
   }
 
   &__overlay {
@@ -78,8 +102,11 @@
     display: flex;
     align-items: center;
     gap: .5rem;
+    max-width: 20rem;
+    max-height: 20rem;
 
     transition: .3s ease-in-out;
+    overflow: hidden;
 
     &:hover {
       background-color: var(--gray-500);
@@ -98,6 +125,42 @@
       border-bottom-right-radius: 1rem;
 
       padding: .5rem 1rem .5rem 1rem;
+
+      svg {
+        path {
+          stroke: red;
+        }
+      }
     }
+  }
+
+  &__edit {
+    position: relative;
+
+    max-height: 0;
+    max-width: 0;
+
+    transition: .2s ease-in-out;
+
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+
+    .field {
+      width: 20rem;
+
+      &__input {
+        font-size: 1.4rem;
+
+        height: 3.5rem;
+      }
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 20;
   }
 }

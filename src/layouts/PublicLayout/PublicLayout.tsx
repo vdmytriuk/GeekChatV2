@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 
 import PublicHeader from "../PublicHeader/PublicHeader";
-import BorderedBox from "../../../components/BorderedBox/BorderedBox";
+import BorderedBox from "../../components/BorderedBox/BorderedBox";
 
 import './PublicLayout.scss';
 

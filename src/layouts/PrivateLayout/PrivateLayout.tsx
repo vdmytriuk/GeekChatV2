@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-import Rooms from "../../../modules/Rooms/Rooms";
+import Rooms from "../../modules/Rooms/Rooms";
 import PrivateHeader from "../PrivateHeader/PrivateHeader";
 
 import "./PrivateLayout.scss";
