@@ -14,13 +14,14 @@ import {chatActions} from "../../store/chat";
 import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 
 interface IRoomProps extends IRoom {
-    setPopupId: any;
-    popupId: string;
-    handleSubmit: any;
-    onSubmit: any;
-    register: any;
-    errors: any;
-    dirtyFields: any;
+    setPopupId?: any;
+    popupId?: string;
+    handleSubmit?: any;
+    onSubmit?: any;
+    register?: any;
+    errors?: any;
+    dirtyFields?: any;
+    ownRoom?: boolean
 }
 
 const Room: FC<IRoomProps> =
@@ -33,7 +34,8 @@ const Room: FC<IRoomProps> =
       dirtyFields,
       errors,
       onSubmit,
-      register
+      register,
+      ownRoom = false
     }) => {
     const dispatch = useTypedDispatch();
     const activeRoomChatId = useTypedSelector(state => state.chat.activeChatRoomId);
@@ -49,64 +51,68 @@ const Room: FC<IRoomProps> =
                 {name}
             </p>
 
-            <div
-                className={`room__control ${popupId === _id ? 'active' : ''}`}
-                onClick={() => setPopupId(_id)}
-            >
-                <Edit/>
+            {ownRoom &&
+             <>
+                 <div
+                     className={`room__control ${popupId === _id ? 'active' : ''}`}
+                     onClick={() => setPopupId(_id)}
+                 >
+                     <Edit/>
 
-                <div className={`room__popup  ${isEditing ? 'editing' : ''}`}>
-                    <div
-                        className="room__item"
-                        onClick={(e) => {
-                            e.stopPropagation()
-                            setIsEditing(true)
-                        }}
-                    >
-                        <Light/>
+                     <div className={`room__popup  ${isEditing ? 'editing' : ''}`}>
+                         <div
+                             className="room__item"
+                             onClick={(e) => {
+                                 e.stopPropagation()
+                                 setIsEditing(true)
+                             }}
+                         >
+                             <Light/>
 
-                        <p className="caption-text light-text">
-                            Edit
-                        </p>
-                    </div>
+                             <p className="caption-text light-text">
+                                 Edit
+                             </p>
+                         </div>
 
-                    <div className="room__item">
-                        <Delete/>
+                         <div className="room__item">
+                             <Delete/>
 
-                        <p className="caption-text">
-                            Delete
-                        </p>
-                    </div>
+                             <p className="caption-text">
+                                 Delete
+                             </p>
+                         </div>
 
-                    <form
-                        className="room__edit"
-                        noValidate
-                        onSubmit={handleSubmit(() => onSubmit(_id))}
-                    >
-                        <button
-                            className="room__close"
-                            onClick={() => setIsEditing(false)}
-                        >
-                            <Close/>
-                        </button>
+                         <form
+                             className="room__edit"
+                             noValidate
+                             onSubmit={handleSubmit(() => onSubmit(_id))}
+                         >
+                             <button
+                                 className="room__close"
+                                 onClick={() => setIsEditing(false)}
+                             >
+                                 <Close/>
+                             </button>
 
-                        <FormField
-                            label="Room name"
-                            type="text"
-                            name="name"
-                            placeholder={name}
-                            register={{...register("name")}}
-                            errorMessage={errors.name?.message}
-                            success={dirtyFields.name && !errors.name ? 1 : 0}
-                        />
-                    </form>
-                </div>
-            </div>
+                             <FormField
+                                 label="Room name"
+                                 type="text"
+                                 name="name"
+                                 placeholder={name}
+                                 register={{...register("name")}}
+                                 errorMessage={errors.name?.message}
+                                 success={dirtyFields.name && !errors.name ? 1 : 0}
+                             />
+                         </form>
+                     </div>
+                 </div>
 
-            <div
-                className={`room__overlay ${popupId === _id  ? 'active' : ''}`}
-                onClick={() => setPopupId(null)}
-            />
+                 <div
+                     className={`room__overlay ${popupId === _id  ? 'active' : ''}`}
+                     onClick={() => setPopupId(null)}
+                 />
+             </>
+            }
         </div>
     );
 };

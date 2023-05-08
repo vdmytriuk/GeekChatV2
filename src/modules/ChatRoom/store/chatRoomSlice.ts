@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IRoom} from "../../../shared/common/types";
+import {IMessage, IRoom} from "../../../shared/common/types";
 
 const initialState: IRoom = {
     messages: [],
@@ -17,6 +17,9 @@ export const chatRoomSlice = createSlice({
             return {
                 ...action.payload
             }
+        },
+        addNewMessage(state, action: PayloadAction<IMessage>) {
+            state.messages = [...state.messages, action.payload];
         }
     }
 });

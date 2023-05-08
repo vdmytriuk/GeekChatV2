@@ -48,4 +48,27 @@
 
     scroll-behavior: smooth;
   }
+
+  &__attach {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: .2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+    @media (max-width: 576px) {
+      font-size: 12px;
+    }
+  }
+
+  &__file {
+    input[type="file"] {
+      display: none;
+    }
+  }
 }
