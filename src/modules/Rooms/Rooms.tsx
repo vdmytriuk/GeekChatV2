@@ -15,6 +15,7 @@ import Room from "../../components/Room/Room";
 
 import "./Rooms.scss";
 import {editUserRequest} from "./api/editRoomRequest";
+import {getMyRoomsRequest} from "./api/getMyRoomsRequest";
 
 
 const Rooms: FC = () => {
@@ -26,6 +27,7 @@ const Rooms: FC = () => {
     const [activeRoomType, setActiveRoomType] = useState(navItems[0]);
 
     const publicRooms = useTypedSelector(state => state.rooms.publicRooms);
+    const myRooms = useTypedSelector(state => state.rooms.myRooms);
 
     const {
         register,
@@ -49,6 +51,7 @@ const Rooms: FC = () => {
 
     useEffect(() => {
         dispatch(getPublicRoomsRequest(dispatch));
+        dispatch(getMyRoomsRequest(dispatch));
     }, [])
 
     return (
@@ -61,11 +64,7 @@ const Rooms: FC = () => {
                 {activeRoomType === navItems[0]
                     ?
                     <ul className="rooms__list">
-
-                    </ul>
-                    :
-                    <ul className="rooms__list">
-                        {publicRooms.map(room => (
+                        {myRooms.map(room => (
                             <li key={room._id}>
                                 <Room
                                     handleSubmit={handleSubmit}
@@ -75,6 +74,17 @@ const Rooms: FC = () => {
                                     dirtyFields={dirtyFields}
                                     setPopupId={setRoomPopupId}
                                     popupId={roomPopupId}
+                                    ownRoom
+                                    {...room}
+                                />
+                            </li>
+                        ))}
+                    </ul>
+                    :
+                    <ul className="rooms__list">
+                        {publicRooms.map(room => (
+                            <li key={room._id}>
+                                <Room
                                     {...room}
                                 />
                             </li>

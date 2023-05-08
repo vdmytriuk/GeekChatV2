@@ -5,8 +5,8 @@ export interface IUser {
 }
 
 export interface IMessage {
-    _id?: string;
-    author: {
+    _id?: string | number;
+    author?: {
         id: string;
         username: string;
     },
