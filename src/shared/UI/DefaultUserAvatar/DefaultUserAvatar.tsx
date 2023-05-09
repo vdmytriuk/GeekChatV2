@@ -9,6 +9,7 @@ interface IDefaultAvatar {
     fontSize?: string,
     backgroundColor?: string,
     color?: string,
+    onClick?: any,
 }
 
 
@@ -19,7 +20,8 @@ const DefaultUserAvatar: FC<IDefaultAvatar> = (
         height,
         fontSize,
         backgroundColor,
-        color
+        color,
+        onClick
     }) => {
     const initials = username ? username.charAt(0) : "";
 
@@ -32,7 +34,7 @@ const DefaultUserAvatar: FC<IDefaultAvatar> = (
     };
 
     return (
-        <div className="user-avatar" style={style}>
+        <div className="user-avatar" onClick={onClick} style={style}>
             <span>
                 {initials.toUpperCase()}
             </span>

@@ -31,11 +31,11 @@ const AppNotification: FC = () => {
                 <Close/>
             </button>
 
-            <h3 className="medium-title">
+            <h3 className="small-heading">
                 {title}
             </h3>
 
-            <p>
+            <p className="small-text">
                 {text}
             </p>
         </div>

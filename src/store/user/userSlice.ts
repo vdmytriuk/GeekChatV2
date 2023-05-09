@@ -24,9 +24,11 @@ export const userSlice = createSlice({
                 isAuth: true
             }
         },
-        logout(state) {
+        logout() {
             localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-            state.isAuth = false;
+            return {
+                ...initialState
+            }
         }
     }
 });

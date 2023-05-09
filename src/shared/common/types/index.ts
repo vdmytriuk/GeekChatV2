@@ -23,7 +23,7 @@ export interface IRoom {
     _id?: string;
     name: string;
     description?: string;
-    owner: string;
-    messages: IMessage[] | [];
-    participants: [];
+    owner?: string;
+    messages?: IMessage[] | [];
+    participants?: [];
 }

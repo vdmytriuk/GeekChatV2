@@ -27,10 +27,13 @@ export const setUserProfile = (dispatch: AppDispatch) => {
 
         $host.defaults.headers.common['Authorization'] = `Bearer ${user_token}`;
 
+        dispatch(appActions.setIsAppLoading(true));
+
         const resp = await $host.get<IUser>(`/users/${userId}`);
 
         const user = resp?.data;
 
+        dispatch(appActions.setIsAppLoading(false));
         dispatch(userActions.setUser(user));
     });
 }

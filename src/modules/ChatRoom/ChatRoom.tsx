@@ -1,19 +1,16 @@
-import React, {ChangeEventHandler, FC, FormEvent, useEffect, useRef, useState} from 'react';
-import {useParams, useLocation} from 'react-router-dom';
-import {useSelector} from "react-redux";
+import React, {FC, FormEvent, useEffect, useRef, useState} from 'react';
 import {useTypedDispatch} from "../../shared/hooks/useTypedDispatch";
 import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
 import io from 'socket.io-client';
 
-import {getChatRoomRequest} from "./api";
+import {getChatRoomRequest, uploadFileRequest} from "./api";
 import {chatRoomActions} from "./store";
 
-import {IMessage, IRoom} from "../../shared/common/types";
+import {IMessage} from "../../shared/common/types";
 import {LOCAL_STORAGE_USER_KEY} from "../../shared/common/config/localStorage";
 
 import Button from "../../shared/UI/Button/Button";
 import Message from "../../components/Message/Message";
-import FormField from "../../shared/UI/FormField/FormField";
 
 import File from "../../shared/assets/svg/file.svg";
 import Close from "../../shared/assets/svg/close.svg";
@@ -55,6 +52,32 @@ export const ChatRoom: FC = () => {
         );
     };
 
+    const uploadFile = async ({ file }: any) => {
+        const body = new FormData()
+        body.append('file', file)
+
+        const response = await dispatch(uploadFileRequest(dispatch, body))
+
+        const pathToFile = response?.data;
+
+        return pathToFile
+    }
+
+
+    const resetFile = (e?: any) => {
+        if (e) {
+            e.stopPropagation();
+        }
+
+        setFileName(FILE_STRING);
+
+        if (fileField && fileField.current) {
+            const currentFileField = fileField.current as HTMLInputElement;
+
+            currentFileField.value = '';
+        }
+    }
+
     const handleSendMessage = async (event: FormEvent) => {
         event.preventDefault();
 
@@ -64,14 +87,34 @@ export const ChatRoom: FC = () => {
             username: user.username
         };
         let message = "";
+        let path = "";
+
+        if (fileField && fileField.current) {
+            const currentFileField = fileField.current as HTMLInputElement;
+
+            const file = currentFileField.files[0];
+
+            if (file) {
+                path = await uploadFile({ file });
+
+                resetFile();
+            }
+        }
 
         if (textField && textField.current) {
             const currentTextField = textField.current as HTMLInputElement;
             message = currentTextField.value;
             currentTextField.value = '';
-        }
 
-        await sendMessage({author, message, room, filePath: ""});
+            if (message !== "") {
+                await sendMessage({
+                    author,
+                    message,
+                    room,
+                    filePath: path
+                });
+            }
+        }
     };
 
     useEffect(() => {
@@ -80,15 +123,29 @@ export const ChatRoom: FC = () => {
 
     useEffect(() => {
         socket.on('new-message', (message: any) => {
-            dispatch(chatRoomActions.addNewMessage({...message, message: message.message.message, _id: new Date().getTime() }))
+            dispatch(chatRoomActions.addNewMessage({
+                ...message,
+                message: message.message.message,
+                filePath: message.message.filePath ?? "",
+                _id: new Date().getTime(),
+                author: {username: user.username, id: user._id}
+            }))
         });
 
         socket.on('user-joined', ({ message }) => {
-            dispatch(chatRoomActions.addNewMessage({message, _id: new Date().getTime(), isAdmin: true }))
+            dispatch(chatRoomActions.addNewMessage({
+                message,
+                _id: new Date().getTime(),
+                isAdmin: true
+            }))
         });
 
         socket.on('user-left', ({ message }) => {
-            dispatch(chatRoomActions.addNewMessage({message, _id: new Date().getTime(), isAdmin: true }))
+            dispatch(chatRoomActions.addNewMessage({
+                message,
+                _id: new Date().getTime(),
+                isAdmin: true
+            }))
         });
     }, [activeChatRoomId]);
 
@@ -100,25 +157,12 @@ export const ChatRoom: FC = () => {
         }
     }, [messages]);
 
+
     const setFile = (e: any) => {
         if (fileField && fileField.current) {
             const currentFileField = fileField.current as HTMLInputElement;
 
             setFileName(currentFileField.files[0] ? currentFileField.files[0].name : 'Attach file')
-        }
-    }
-
-    const resetFile = (e: any) => {
-        if (e) {
-            e.stopPropagation();
-        }
-
-        setFileName(FILE_STRING);
-
-        if (fileField && fileField.current) {
-            const currentFileField = fileField.current as HTMLInputElement;
-
-            currentFileField.value = '';
         }
     }
 
@@ -133,7 +177,7 @@ export const ChatRoom: FC = () => {
                             {name}
                         </h2>
 
-                        <p>
+                        <p className="small-text gray400-text">
                             {description}
                         </p>
                     </div>

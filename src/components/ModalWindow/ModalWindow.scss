@@ -13,7 +13,10 @@
 
   animation: opacityAnimation 1s forwards;
 
+  backdrop-filter: blur(2px);
+
   overflow: hidden;
+  cursor: pointer;
 
   &__wrapper {
     display: flex;
@@ -22,8 +25,10 @@
     padding: 2rem;
 
     border-radius: .5rem;
-    background-color: var(--bg-color);
+    background-color: var(--gray-600);
     animation: fadeIn 1s;
+
+    cursor: auto;
   }
 
   &__close {
