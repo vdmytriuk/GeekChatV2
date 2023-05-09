@@ -19,6 +19,10 @@
       margin-left: auto;
       margin-bottom: 2rem;
     }
+
+    a {
+      color: var(--accent-primary-text-color);
+    }
   }
 
   &__legend {

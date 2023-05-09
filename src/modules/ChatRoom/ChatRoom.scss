@@ -12,9 +12,8 @@
 
   &__top {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 2rem;
+    flex-direction: column;
+    padding: 2rem 2rem;
     height: 8rem;
     flex: none;
     width: 100%;
@@ -41,6 +40,7 @@
     flex-direction: column;
     gap: 3rem;
     padding: 2rem;
+    margin-top: auto;
     max-height: 100%;
     overflow-y: auto;
     //background: radial-gradient(circle at center, var(--gray-700), var(--primary-default) 10%, var(--gray-800) 30%);

@@ -1,4 +1,12 @@
-import {FC, useState} from "react";
+import React, {FC, FormEvent, useState} from "react";
+import {useForm} from "react-hook-form";
+import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
+import {useTypedDispatch} from "../../shared/hooks/useTypedDispatch";
+
+import {chatActions} from "../../store/chat";
+
+import {getChatRoomRequest} from "../ChatRoom/api";
+import {deleteRoomRequest, editRoomRequest} from "./api";
 
 import Edit from "../../shared/assets/svg/edit.svg";
 import Light from "../../shared/assets/svg/todo.svg"
@@ -6,41 +14,60 @@ import Close from "../../shared/assets/svg/close.svg";
 import Delete from "../../shared/assets/svg/delete.svg";
 
 import {IRoom} from "../../shared/common/types";
+import {IRoomEditData} from "./types";
+
+import Button from "../../shared/UI/Button/Button";
+import FormField from "../../shared/UI/FormField/FormField";
 
 import "./Room.scss";
-import FormField from "../../shared/UI/FormField/FormField";
-import {useTypedDispatch} from "../../shared/hooks/useTypedDispatch";
-import {chatActions} from "../../store/chat";
-import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
+
 
 interface IRoomProps extends IRoom {
     setPopupId?: any;
     popupId?: string;
-    handleSubmit?: any;
-    onSubmit?: any;
-    register?: any;
-    errors?: any;
-    dirtyFields?: any;
     ownRoom?: boolean
 }
 
 const Room: FC<IRoomProps> =
     ({
-      name,
       _id,
+      name,
+      description,
       setPopupId,
       popupId,
-      handleSubmit,
-      dirtyFields,
-      errors,
-      onSubmit,
-      register,
       ownRoom = false
     }) => {
     const dispatch = useTypedDispatch();
     const activeRoomChatId = useTypedSelector(state => state.chat.activeChatRoomId);
 
     const [isEditing, setIsEditing] = useState(false);
+
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            dirtyFields
+        }
+    } = useForm<IRoomEditData>(
+        {
+            mode: 'onChange',
+            // resolver: yupResolver(editRoomSchema)
+        }
+    );
+
+    const onSubmit: (data: IRoomEditData, e: FormEvent<HTMLFormElement>) => void = async (data, e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        await dispatch(editRoomRequest(dispatch, popupId, data));
+
+        setIsEditing(false);
+        setPopupId("");
+
+        if (activeRoomChatId === popupId) {
+            dispatch(getChatRoomRequest(dispatch, activeRoomChatId));
+        }
+    }
 
     return (
         <div
@@ -55,17 +82,17 @@ const Room: FC<IRoomProps> =
              <>
                  <div
                      className={`room__control ${popupId === _id ? 'active' : ''}`}
-                     onClick={() => setPopupId(_id)}
+                     onClick={(e) => {
+                         e.stopPropagation();
+                         setPopupId(_id);
+                     }}
                  >
                      <Edit/>
 
                      <div className={`room__popup  ${isEditing ? 'editing' : ''}`}>
                          <div
                              className="room__item"
-                             onClick={(e) => {
-                                 e.stopPropagation()
-                                 setIsEditing(true)
-                             }}
+                             onClick={() => setIsEditing(true)}
                          >
                              <Light/>
 
@@ -74,7 +101,7 @@ const Room: FC<IRoomProps> =
                              </p>
                          </div>
 
-                         <div className="room__item">
+                         <div onClick={() => dispatch(deleteRoomRequest(dispatch, _id))} className="room__item">
                              <Delete/>
 
                              <p className="caption-text">
@@ -85,31 +112,49 @@ const Room: FC<IRoomProps> =
                          <form
                              className="room__edit"
                              noValidate
-                             onSubmit={handleSubmit(() => onSubmit(_id))}
+                             onSubmit={handleSubmit(onSubmit)}
                          >
-                             <button
+                             <span
                                  className="room__close"
                                  onClick={() => setIsEditing(false)}
                              >
                                  <Close/>
-                             </button>
+                             </span>
 
                              <FormField
                                  label="Room name"
                                  type="text"
                                  name="name"
-                                 placeholder={name}
+                                 defaultValue={name}
                                  register={{...register("name")}}
                                  errorMessage={errors.name?.message}
                                  success={dirtyFields.name && !errors.name ? 1 : 0}
                              />
+
+                             <FormField
+                                 label="Room description"
+                                 type="text"
+                                 name="description"
+                                 defaultValue={description}
+                                 register={{...register("description")}}
+                                 errorMessage={errors.description?.message}
+                                 success={dirtyFields.description && !errors.description ? 1 : 0}
+                             />
+
+                             <Button type="submit">
+                                 Save
+                             </Button>
                          </form>
                      </div>
                  </div>
 
                  <div
                      className={`room__overlay ${popupId === _id  ? 'active' : ''}`}
-                     onClick={() => setPopupId(null)}
+                     onClick={(e) => {
+                         e.stopPropagation()
+                         setIsEditing(false)
+                         setPopupId("")
+                     }}
                  />
              </>
             }

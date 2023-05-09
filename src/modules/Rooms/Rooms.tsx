@@ -1,21 +1,13 @@
-import {FC, FormEvent, useEffect, useState} from "react";
+import {FC, useEffect, useState} from "react";
 import {useTypedDispatch} from "../../shared/hooks/useTypedDispatch";
 import {useTypedSelector} from "../../shared/hooks/useTypedSelector";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {yupResolver} from "@hookform/resolvers/yup";
 
-import {IRoomEditData} from "./types";
-import {editRoomSchema} from "./schema/schema";
-
-import {authUserRequest} from "../AuthForm/api";
-import {getPublicRoomsRequest} from "./api";
+import {getPublicRoomsRequest, getMyRoomsRequest} from "./api";
 
 import Nav from "../../shared/UI/Nav/Nav";
-import Room from "../../components/Room/Room";
+import Room from "../Room/Room";
 
 import "./Rooms.scss";
-import {editUserRequest} from "./api/editRoomRequest";
-import {getMyRoomsRequest} from "./api/getMyRoomsRequest";
 
 
 const Rooms: FC = () => {
@@ -23,31 +15,11 @@ const Rooms: FC = () => {
 
     const navItems = ["My rooms", "Public rooms"];
 
-    const [roomPopupId, setRoomPopupId] = useState(null);
+    const [roomPopupId, setRoomPopupId] = useState<string>("");
     const [activeRoomType, setActiveRoomType] = useState(navItems[0]);
 
-    const publicRooms = useTypedSelector(state => state.rooms.publicRooms);
     const myRooms = useTypedSelector(state => state.rooms.myRooms);
-
-    const {
-        register,
-        handleSubmit,
-        formState: {
-            errors,
-            dirtyFields
-        }
-    } = useForm<IRoomEditData>(
-        {
-            mode: 'onChange',
-            resolver: yupResolver(editRoomSchema)
-        }
-    );
-
-    const onSubmit: (data: IRoomEditData, e: FormEvent<HTMLFormElement>, id: string) => void = (data, e: FormEvent<HTMLFormElement>, id: string) => {
-        e.preventDefault();
-
-        dispatch(editUserRequest(dispatch, id, data));
-    }
+    const publicRooms = useTypedSelector(state => state.rooms.publicRooms);
 
     useEffect(() => {
         dispatch(getPublicRoomsRequest(dispatch));
@@ -67,15 +39,12 @@ const Rooms: FC = () => {
                         {myRooms.map(room => (
                             <li key={room._id}>
                                 <Room
-                                    handleSubmit={handleSubmit}
-                                    onSubmit={onSubmit}
-                                    register={register}
-                                    errors={errors}
-                                    dirtyFields={dirtyFields}
                                     setPopupId={setRoomPopupId}
                                     popupId={roomPopupId}
+                                    _id={room._id}
                                     ownRoom
-                                    {...room}
+                                    name={room.name}
+                                    description={room.description}
                                 />
                             </li>
                         ))}

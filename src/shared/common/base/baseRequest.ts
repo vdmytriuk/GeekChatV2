@@ -21,7 +21,7 @@ export const baseRequest = <T>(
 
             return result;
         } catch (e) {
-            dispatch(appActions.setAppNotification({title: "Error!", text: e.response?.data?.errors ? e.response?.data?.errors.join(' ,') : e.response?.data?.error}));
+            dispatch(appActions.setAppNotification({title: "Error!", text: typeof e.response?.data?.error === "object" ? e.response?.data?.error.reduce((accum: string, current: any) => { return accum + current.message} , "") : e.response?.data?.error}));
         } finally {
             dispatch(appActions.setIsAppLoading(false));
         }

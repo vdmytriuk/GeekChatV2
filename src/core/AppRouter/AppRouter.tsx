@@ -8,6 +8,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import WelcomePage from "../../pages/WelcomePage/WelcomePage";
 import HomePage from "../../pages/HomePage/HomePage";
 import AuthPage from "../../pages/AuthPage/AuthPage";
+import RegisterPage from "../../pages/RegisterPage/RegisterPage";
+import ForgotPasswordPage from "../../pages/ForgotPasswordPage/ForgotPasswordPage";
 
 
 const AppRouter: FC = () => {
@@ -28,6 +30,24 @@ const AppRouter: FC = () => {
                 element={
                     <PublicRoute>
                         <AuthPage/>
+                    </PublicRoute>
+                }
+            />
+
+            <Route
+                path={ROUTER.REGISTRATION}
+                element={
+                    <PublicRoute>
+                        <RegisterPage/>
+                    </PublicRoute>
+                }
+            />
+
+            <Route
+                path={ROUTER.FORGOT_PASSWORD}
+                element={
+                    <PublicRoute>
+                        <ForgotPasswordPage/>
                     </PublicRoute>
                 }
             />
